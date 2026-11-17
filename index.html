@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question 2 - Book Details</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <h2>Book Details</h2>
+
+    <p id="bookTitle"></p>
+    <p id="bookAuthor"></p>
+    <p id="bookGenres"></p>
+
+    <script>
+
+        $.getJSON("books.json", function(data) {
+
+            // (a) Title of the first book
+            console.log("First Book Title:",
+                data.books[0].title);
+
+            // (b) Author of the second book
+            console.log("Second Book Author:",
+                data.books[1].author);
+
+            // (c) Genres of all books
+            data.books.forEach(function(book) {
+                console.log("Genres:",
+                    book.genres.join(", "));
+            });
+
+            // Display the information on webpage
+            $("#bookTitle").text(
+                "First Book Title: " + data.books[0].title
+            );
+
+            $("#bookAuthor").text(
+                "Second Book Author: " + data.books[1].author
+            );
+
+            let genres = "";
+
+            data.books.forEach(function(book) {
+                genres += book.title + ": " +
+                    book.genres.join(", ") + " | ";
+            });
+
+            $("#bookGenres").text("Genres: " + genres);
+
+        });
+
+    </script>
+
+</body>
+</html>
